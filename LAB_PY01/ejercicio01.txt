@@ -1,0 +1,140 @@
+# Ejercicio 1 - Datos - Simples y Estructurados
+
+#1
+# Estado inicial
+saldo = float(input("Digite el saldo de su cuenta: "))   # Saldo de la cuenta
+deposito = float(input("Digite el mondo a ingresar: "))   # Monto a depositar
+retiro = float(input("Cuanto desea retirar?: "))      # Monto a retirar
+interes = 0.02
+
+# Actualización del estado
+saldo = saldo + deposito   # Se deposita dinero
+saldo = saldo - retiro     # Se retira dinero
+
+saldo_final = saldo * (1+interes)
+
+# Salida del estado final
+print(f"Saldo final de la cuenta es: {saldo_final}")
+# El estado inicial es el saldo original antes de movimientos. Estado Final es la conclusión del flujo de datos, entregando los datos modificados, en este caso el saldo final.
+
+
+#2
+# Lista inicial de temperaturas en °C
+temperaturas = [22.5, 23.0, 21.8, 24.3, 25.1]
+temperaturas.append(20.7)
+temperaturas.pop(0)
+temperaturas.insert(1, 23.6)
+temperaturas.sort()
+temp_mayor_menor_dif = temperaturas[-1]-temperaturas[0]
+promedio_temps = sum(temperaturas) / len(temperaturas)
+#Agregar y encontrar temp 23.7
+temperaturas.append(23.7)
+index_temp = temperaturas.index(23.7)
+
+# Operaciones básicas
+print("Temperaturas:", temperaturas)
+print("Temperatura mayor",temp_mayor_menor_dif)
+print("Promedio temperaturas: ", promedio_temps)
+print("Posicion de la temperatura 23.7: ", index_temp)
+print("Temperaturas en las posiciones 2, 3 y 4: ", temperaturas[1],"|" ,temperaturas[2],"|",temperaturas[3])
+print("Tres primeros elementos: ", temperaturas[:3])
+
+
+#3
+# Lista de productos en una tienda
+inventario = [
+    {"nombre": "Pan", "precio": 1500, "stock": 30},
+    {"nombre": "Leche", "precio": 3500, "stock": 15},
+    {"nombre": "Café", "precio": 8000, "stock": 10},
+]
+
+#Nombre primero prod
+print(inventario[0]["nombre"])
+#Nuevo prod inv
+inventario.append({"nombre":"Arepa","precio":2500,"stock":5})
+#Disminuir stock leche
+inventario[1]["stock"] -= 2
+#Valor total por prod
+for i in inventario:
+    v_total = i["precio"] * i["stock"]
+    print(v_total)
+#Prod con stock menor a 10
+for i in inventario:
+    if i["stock"] < 10:
+        print(i)
+    else:
+        pass
+#Aumentar el precio de cada prod un 10% y redondear
+for i in inventario:
+    precio_aumento = i["precio"] * 0.1
+    print(round(i["precio"]+precio_aumento, 2))
+#Buscar prod
+producto = input("Que producto desea ver: ")
+for i in inventario:
+    if i["nombre"] == producto:
+        print(i)
+    else:
+        print("No coincide.")
+#Eliminar prod si su stock es 0
+for i in range(len(inventario) - 1, -1, -1):
+    if inventario[i]["stock"] == 0:
+        inventario.pop(i)
+#Ordenar por precio ascendente
+inventario.sort(key=lambda x: x["precio"])
+
+
+#4
+# Tupla: coordenadas (x, y)
+punto = (3, 7)
+print("Punto:", punto)
+
+rectangulo = (2,4)
+print("Area: ", rectangulo[0]*rectangulo[1])
+print("Perimetro: ", 2*(rectangulo[0]+rectangulo[1]))
+
+#Al intentar cambiar algun valor de la tupla da error, pues las tuplas no se pueden modificar por definicion a diferencia de las listas.
+
+posiciones = [(0, 0), (1, 2), (3, 4)]
+distancia_total = 0
+
+for i in range(len(posiciones) - 1):
+    x1, y1 = posiciones[i]
+    x2, y2 = posiciones[i + 1]
+    distancia = ((x2 - x1)**2 + (y2 - y1)**2)**0.5
+    distancia_total += distancia
+
+print(f"Distancia total recorrida: {distancia_total}")
+
+
+#5
+biblioteca = {
+    "libros": [
+        {"titulo": "1984", "autor": "George Orwell", "prestado": False},
+        {"titulo": "El Principito", "autor": "Antoine de Saint-Exupéry", "prestado": True},
+    ],
+    "usuarios": ["Ana", "Luis", "María"]
+}
+
+# 1. Contar libros prestados y disponibles
+prestados = 0
+disponibles = 0
+for libro in biblioteca["libros"]:
+    if libro["prestado"] == True:
+        prestados = prestados + 1
+    else:
+        disponibles = disponibles + 1
+print(f"Libros prestados: {prestados}")
+print(f"Libros disponibles: {disponibles}")
+
+# 2. Agregar un nuevo libro
+biblioteca["libros"].append({"titulo": "Rayuela", "autor": "Julio Cortázar", "prestado": False})
+
+# 3. Marcar como prestado el libro “1984”
+for libro in biblioteca["libros"]:
+    if libro["titulo"] == "1984":
+        libro["prestado"] = True
+
+# 4. Mostrar estado actualizado
+print("Estado actualizado de la biblioteca:")
+print(biblioteca)
+

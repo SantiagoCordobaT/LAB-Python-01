@@ -1,0 +1,105 @@
+#1
+edad = int(input("Ingrese su edad: "))
+tiene_licencia = input("¿Tiene licencia? (s/n): ").lower()
+no_sancionado = input("¿Está libre de sanciones? (s/n): ").lower()
+
+if edad >= 18 and tiene_licencia == 's' and no_sancionado == 's':
+    print("Puedes conducir.")
+else:
+    print("No cumples con los requisitos para conducir.")
+
+#2
+suma = 0
+counter = 0
+for i in range(1, 6):
+    suma += i
+    if (i % 2 == 0):
+        print(i)
+    counter+=1
+print("Suma primeros n naturales: ",suma)
+print("Contador por iteracion: ",counter)
+
+# Lista inicial de temperaturas en °C
+temperaturas = [22.5, 23.0, 21.8, 24.3, 25.1]
+temperaturas.append(20.7)
+temperaturas.pop(0)
+temperaturas.insert(1, 23.6)
+temperaturas.sort()
+temp_mayor_menor_dif = temperaturas[-1]-temperaturas[0]
+promedio_temps = sum(temperaturas) / len(temperaturas)
+#Agregar y encontrar temp 23.7
+temperaturas.append(23.7)
+index_temp = temperaturas.index(23.7)
+
+# Operaciones básicas
+print("Temperaturas:", temperaturas)
+print("Temperatura mayor",temp_mayor_menor_dif)
+print("Promedio temperaturas: ", promedio_temps)
+print("Posicion de la temperatura 23.7: ", index_temp)
+print("Temperaturas en las posiciones 2, 3 y 4: ", temperaturas[1],"|" ,temperaturas[2],"|",temperaturas[3])
+print("Tres primeros elementos: ", temperaturas[:3])
+
+#Encontrar mayor al promedio
+for i in temperaturas:
+    if i > promedio_temps:
+        print(f"{i} es  mayor que el promedio")
+    else:
+        print("No es mayor.")
+
+#3
+contador = 5
+while contador > 0:
+    print("Contador:", contador)
+    contador -= 1
+
+# Solicitar números hasta ingresar 0
+numero = -1
+while numero != 0:
+    numero = int(input("Ingresa un número (0 para salir): "))
+
+# El "estado del ciclo" lo representa la variable contador y numero, pues son los valores que determinan si el bucle continúa o termina.
+
+
+#4
+suma_pares = 0
+suma_impares = 0
+
+for i in range(1, 11):
+    if i % 2 == 0:
+        suma_pares += i
+    else:
+        suma_impares += i
+
+# Estado final como diccionario
+estado_final = {
+    "suma_pares": suma_pares,
+    "suma_impares": suma_impares
+}
+print(estado_final)
+
+# En cada iteración, el programa evalúa i. Si la condición se cumple, se reasigna el valor de la variable acumuladora sumándole el valor actual de i, modificando la memoria en cada paso.
+
+
+#5
+productos = []
+while True:
+    nombre = input("Ingrese producto (o 'fin' para salir): ")
+    if nombre == "fin":
+        break
+    precio = float(input("Precio: "))
+    cantidad = int(input("Cantidad: "))
+    if precio < 0 or cantidad < 0:
+        print("Datos inválidos, producto saltado.")
+        continue
+    productos.append({"nombre": nombre, "precio": precio, "cantidad": cantidad})
+if productos:
+    mas_caro = max(productos, key=lambda x: x["precio"])
+    print(f"Producto más caro: {mas_caro['nombre']} (${mas_caro['precio']})")
+
+# Mostrar total
+total = 0
+for p in productos:
+    total += p["precio"] * p["cantidad"]
+
+print("Total del inventario:", total)
+print("Inventario final:", productos)

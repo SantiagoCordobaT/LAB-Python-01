@@ -1,0 +1,72 @@
+#1
+import requests
+
+# Llamado a una API pública
+url = "https://jsonplaceholder.typicode.com/users"
+response = requests.get(url)
+usuarios = response.json()
+# Procesamiento imperativo
+nombres = []
+for u in usuarios:
+    nombres.append(u["name"])
+
+print("Usuarios encontrados:")
+for n in nombres:
+    if n["email"].endswith(".biz"):
+        print("-",u["name"])
+
+
+#2
+import requests
+
+# Entrada de datos
+nombre_pokemon = input("Ingrese el nombre de un Pokémon: ").lower()
+
+# Llamado a la API
+url = f"https://pokeapi.co/api/v2/pokemon/{nombre_pokemon}"
+respuesta = requests.get(url)
+
+# Verificación del estado de la respuesta
+if respuesta.status_code == 200:
+    datos = respuesta.json()
+
+    lista_tipos=[]
+    for t in datos["types"]:
+        nombre_tipo = t["type"]["name"]
+        lista_tipos.append(nombre_tipo)
+
+    if len(lista_tipos)>1:
+        print("Pokemon de tipo mixto.")
+    else:
+        pass
+
+    if datos["weight"] > 100:
+        print("Pokemon pesado.")
+    else:
+        print("Pokemon ligero.")
+
+    # Modelado del estado del Pokémon
+    pokemon = {
+        "nombre": datos["name"],
+        "altura": datos["height"],
+        "peso": datos["weight"],
+        "tipos": [t["type"]["name"] for t in datos["types"]],
+    }
+
+    # Salida del estado actual
+    print("\n📘 Información del Pokémon")
+    print(f"Nombre: {pokemon['nombre'].capitalize()}")
+    print(f"Altura: {pokemon['altura']}")
+    print(f"Peso: {pokemon['peso']}")
+    print(f"Tipos: {', '.join(pokemon['tipos'])}")
+    
+    lista_habilidades = []
+    for h in datos["abilities"]:
+        nombre_habilidad = h["ability"]["name"]
+        lista_habilidades.append(nombre_habilidad)
+    print("Habilidades:")
+    for habilidad in lista_habilidades:
+        print(f"- {habilidad}")
+
+else:
+    print("Pokémon no encontrado. Verifique el nombre ingresado.")
