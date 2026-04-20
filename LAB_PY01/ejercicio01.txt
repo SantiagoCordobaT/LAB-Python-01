@@ -115,7 +115,6 @@ biblioteca = {
     "usuarios": ["Ana", "Luis", "María"]
 }
 
-# 1. Contar libros prestados y disponibles
 prestados = 0
 disponibles = 0
 for libro in biblioteca["libros"]:
@@ -126,15 +125,12 @@ for libro in biblioteca["libros"]:
 print(f"Libros prestados: {prestados}")
 print(f"Libros disponibles: {disponibles}")
 
-# 2. Agregar un nuevo libro
 biblioteca["libros"].append({"titulo": "Rayuela", "autor": "Julio Cortázar", "prestado": False})
 
-# 3. Marcar como prestado el libro “1984”
 for libro in biblioteca["libros"]:
     if libro["titulo"] == "1984":
         libro["prestado"] = True
 
-# 4. Mostrar estado actualizado
 print("Estado actualizado de la biblioteca:")
 print(biblioteca)
 
